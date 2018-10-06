@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Asset;
+use App\Company;
 use Illuminate\Http\Request;
 
-class AssetController extends Controller
+class CompanyController extends Controller
 {
 
     private $request;
@@ -18,39 +19,35 @@ class AssetController extends Controller
     {
 
         $this->validate($this->request, [
-			'qr' => 'required',
-			'name' => 'required'
+			'name' => 'required',
         ]);
 
         $data = $this->request->all();
 
-		$asset = Asset::create($data);
+		$company = Company::create($data);
 		return response()->json([
 			'success' => true,
-			'message' => 'Asset added.',
-			'asset' => $asset
+			'message' => 'Company added.',
+			'company' => $company
 		]);
     }
 
 	public function delete($id)
 	{
-		Asset::findOrFail($id)->delete();
+		Company::findOrFail($id)->delete();
 		return response()->json([
 			'success' => true,
-			'message' => 'Asset deleted.'
+			'message' => 'Company deleted.'
 		]);
     }
 
     public function getOne($id){
-
-		$asset = Asset::find($id);
-
-		return response()->json($asset);
+		
     }
 
     public function getAll()
 	{
-        $response = Asset::all();
+        $response = Company::all();
 
 		return response()->json($response);
 	}

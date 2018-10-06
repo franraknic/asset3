@@ -14,6 +14,15 @@ class Asset extends Model {
     ];
 
     public $timestamps = true;
+
+    /*
+
+    public function company()
+    {
+        return $this->belongsTo('App\Company');
+    }
+
+    */
     
     
 }

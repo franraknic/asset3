@@ -15,6 +15,13 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+// Assets
 $router->post('assets', ['uses' => 'AssetController@create']);
 $router->delete('assets/{id}', ['uses' => 'AssetController@delete']);
 $router->get('assets', ['uses' => 'AssetController@getAll']);
+$router->get('assets/{id}', ['uses' => 'AssetController@getOne']);
+
+// Companies
+$router->post('companies', ['uses' => 'CompanyController@create']);
+$router->delete('companies/{id}', ['uses' => 'CompanyController@delete']);
+$router->get('companies', ['uses' => 'CompanyController@getAll']);
