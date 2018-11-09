@@ -48,6 +48,6 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
         
       # run tests!
-      - run: cp .env.exmaple .env
+      - run: cp .env.examaple .env
       - run: php artisan migrate
       - run: vendor/bin/phpunit
