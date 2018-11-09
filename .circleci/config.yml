@@ -14,11 +14,11 @@ jobs:
           MYSQL_USER: root
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_PASSWORD:
-      - image: circleci/mysql:latest
-        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
-        environment:
-          MYSQL_USER: root
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
+      #- image: circleci/mysql:latest
+      #  command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+      #  environment:
+      #    MYSQL_USER: root
+      #    MYSQL_ALLOW_EMPTY_PASSWORD: true
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -29,8 +29,8 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo service mysql start
       - run: sudo apt install -y mysql-client
+      - run: sudo service mysql start
 
       # Download and cache dependencies
       - restore_cache:
