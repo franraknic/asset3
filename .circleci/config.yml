@@ -30,7 +30,8 @@ jobs:
       - run: sudo apt install -y mysql-client
       - run: sudo service mysql start
       - run: sudo mysql -u root -e "CREATE user myuser IDENTIFIED BY 'password';"
-      - run: mysql -u myuser --password=password -e "create database asset3;"
+      - run: sudo mysql -u root -e "CREATE DATABASE asset3;"
+      - run: sudo mysql -u root -e "GRANT ALL PRIVILEGES ON asset3.* TO 'myuser'@'%';"
 
       # Download and cache dependencies
       - restore_cache:
