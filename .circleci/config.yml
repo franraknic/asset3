@@ -10,10 +10,7 @@ jobs:
       - image: circleci/php:7.1-browsers
         environment:
           MYSQL_HOST: 127.0.0.1
-          MYSQL_DB: asset3
-          MYSQL_USER: root
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
-          MYSQL_PASSWORD:
+          MYSQL_ROOT_PASSWORD: password
       #- image: circleci/mysql:latest
       #  command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
       #  environment:
@@ -32,6 +29,8 @@ jobs:
       - run: sudo apt install -y mysql-server
       - run: sudo apt install -y mysql-client
       - run: sudo service mysql start
+      - run: sudo mysql -u root -e "CREATE user myuser IDENTIFIED BY 'password';"
+      - run: mysql -u myuser -e "create database asset3;"
 
       # Download and cache dependencies
       - restore_cache:
@@ -48,7 +47,6 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
         
       # run tests!
-      - run: mysql -h 127.0.0.1 -u root -e "create databse asset3;"
       - run: cp .env.exmaple .env
       - run: php artisan migrate
       - run: vendor/bin/phpunit
