@@ -32,6 +32,7 @@ jobs:
       - run: sudo mysql -u root -e "CREATE user myuser IDENTIFIED BY 'password';"
       - run: sudo mysql -u root -e "CREATE DATABASE asset3;"
       - run: sudo mysql -u root -e "GRANT ALL PRIVILEGES ON asset3.* TO 'myuser'@'%';"
+      - run: sudo docker-php-ext-install pdo_mysql
 
       # Download and cache dependencies
       - restore_cache:
